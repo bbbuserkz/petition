@@ -1,0 +1,12 @@
+asgiref==3.6.0
+Django==3.2.16
+django-ckeditor==6.3.2
+django-js-asset==2.0.0
+Pillow==9.3.0
+pyenchant==3.2.2
+python-dotenv==0.21.0
+pytils==0.4.1
+pytz==2022.7
+sqlparse==0.4.3
+translit==0.2a1
+typing_extensions==4.4.0
