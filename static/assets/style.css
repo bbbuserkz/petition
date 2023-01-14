@@ -1,0 +1,38 @@
+.carousel-caption-pet{
+    position: absolute;
+    right: 2%;
+    bottom: 25px;
+    left: 2%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #000;
+    text-align: center;
+    background-color: #ffffffeb;
+    border-radius:10px;
+    text-align:left;
+    padding: 1em;
+}
+.icon-pet{
+    color:#0a267a;
+    font-weight:bold;
+}
+.small-text{
+    font-size:0.8em;
+}
+.left-bar-pet-img{
+    width: 100%;
+    height: 125px;
+    object-fit: cover;
+    border-radius: 0;
+}
+.main-bar-pet-img{
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 0;
+}
+.details{
+    font-size:0.7em;
+
+}

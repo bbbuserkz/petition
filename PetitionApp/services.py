@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.shortcuts import get_object_or_404
-
+from django.utils import timezone
+import datetime
 
 from .models import PetitionModel, PetitonCategoryModel
 
@@ -15,8 +16,9 @@ class PetitonClass:
         return petitions
 
     def get_active_pet(self, request, count: int):
+        now = datetime.datetime.now(tz=timezone.utc)
         try:
-            petitions = PetitionModel.objects.filter(status=True).order_by('-id')[:count]
+            petitions = PetitionModel.objects.filter(status=True, dateEnd__gte=now).order_by('-id')[:count]
         except:
             raise Http404()
         return petitions
@@ -36,6 +38,7 @@ class PetitonClass:
                 categories = PetitonCategoryModel.objects.filter(status=True)
         except:
             raise Http404()
+        return categories
 
     def get_category(self, request, catid):
         category = get_object_or_404(PetitonCategoryModel, pk=catid)
