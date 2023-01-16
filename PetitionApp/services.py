@@ -2,6 +2,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 import datetime
+from django.core.paginator import Paginator
 
 from .models import PetitionModel, PetitonCategoryModel
 
@@ -43,3 +44,23 @@ class PetitonClass:
     def get_category(self, request, catid):
         category = get_object_or_404(PetitonCategoryModel, pk=catid)
         return category
+
+    def get_pets_paginator(self, request, itemcount: int):
+        now = datetime.datetime.now(tz=timezone.utc)
+        items = PetitionModel.objects.filter(status=True, dateEnd__gte=now).order_by('-id')
+        paginator = Paginator(items, itemcount)
+        page_number = request.GET.get('page')
+        if not page_number:
+            page_number = 1
+        page_obj = paginator.get_page(page_number)
+        return page_obj
+
+    def get_pets_popular_paginator(self, request, itemcount: int):
+        now = datetime.datetime.now(tz=timezone.utc)
+        items = PetitionModel.objects.filter(status=True, dateEnd__gte=now).order_by('-id')
+        paginator = Paginator(items, itemcount)
+        page_number = request.GET.get('page')
+        if not page_number:
+            page_number = 1
+        page_obj = paginator.get_page(page_number)
+        return page_obj

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+        .rightMenuBlock:hover{
+            background-color: aliceblue;
+        }
+    </style>
+<div class="py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 small-text">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"> <a href="{% url 'home_url' %}">Главная</a> </li>
+            <li class="breadcrumb-item active">Популярные петиции</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12">
+              <h1 class="mb-3 display-1" style="color: black; font-weight: bold;">Популярные петиции</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-1">
+    <div class="container">
+        {% for pet in items %}
+      <div class="row pt-1 pb-1 rightMenuBlock">
+        <div class="col-md-12 border-bottom">
+          <div class="row">
+            <div class="col-md-4"><img class="img-fluid d-block d-flex justify-content-center align-items-center flex-grow-0 left-bar-pet-img" src="/{{ pet.image|safe }}"></div>
+            <div class="col-md-8">
+              <p class="small-text p-0 m-0 text-left small-text text-primary"><i class="now-ui-icons business_bulb-63 icon-pet"></i> {{ pet.petCategory.title }} </p>
+              <a href="{% url 'pet_url' pet.id %}"><h6 class="m-0 text-left" style="font-weight: normal;">{{ pet.title|truncatewords:15 }}</h6></a>
+              <p class=" text-left">
+                <i class="now-ui-icons ui-1_check icon-pet"></i> 1245 </p>
+              <p class="text-left">
+                <i class="now-ui-icons ui-1_lock-circle-open icon-pet"></i> {{ pet.signCategory.title }} </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6"><img class="img-fluid d-block" src="{% static 'assets/img/multiethnic-group-hands-raised.jpg' %}"></div>
+        <div class="col-md-6">
+          <div class="bg-white p-3 mx-auto col-md-12 col-10">
+            <h4 style="font-weight:bold;">Вы можете опубликовать свою петицию</h4>
+            <p class="mb-1 lead">создай петицию и начни&nbsp;<br>собирать подписи</p>
+            <p class="mb-1 small-text">для публикации своей петиции необходимо выбрать тариф, заполнить форму.&nbsp;<br>* заявку могут отклоняться только при нарушении Правил публикации</p>
+            <a class="btn btn-outline-primary btn-sm" href="#">Создать петицию</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

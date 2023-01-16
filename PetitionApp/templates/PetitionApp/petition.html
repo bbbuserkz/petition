@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  .description span{
+    font-family: Montserrat !important;
+    font-size: 1.25rem !important;
+  }
+  .description p{
+    font-family: Montserrat !important;
+    font-size: 1.25rem !important;
+  }
+</style>
+<div class="text-center align-items-center d-flex py-3" style="	background-image: linear-gradient(to bottom, rgba(189, 195, 199, .75), rgba(44, 62, 80, .75)), url(/{{ pet.image|safe }});	background-size: 100%, 100%;	background-position: center, center center;	background-repeat: repeat, repeat;">
+    <div class="container py-3">
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+          <h3 class="" style="color:white; font-weight:bold;">{{ pet.title }}</h3>
+          <ul class="breadcrumb" style="text-align:center; margin-left:auto; font-size:80%; color:white; background-color:#fff0; display: inline-flex;">
+            <li class="breadcrumb-item"> <a href="{% url 'home_url' %}">Главная</a> </li>
+            <li class="breadcrumb-item active">{{ pet.title|truncatewords:9 }}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6" style="">
+          <p class="lead text-primary my-1 bg-light rounded">дата завершения</p>
+          <h4 class="text-light">{{ pet.dateEnd|date }}</h4>
+        </div>
+        <div class="col-md-6">
+          <p class="lead text-primary my-1 bg-light rounded">Количество подписей</p>
+          <h4 class="text-light">1 256</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-1">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 small-text">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12"><img class="img-fluid d-block mx-auto" src="/{{ pet.image|safe }}"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <p class="text-primary border-bottom mt-3 mb-1">Описание</p>
+          <div class="description">
+            {{ pet.description|safe }}
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="row my-2">
+            <div class="col-md-12">
+              <p class="text-primary border-bottom mt-3 mb-1">Детальная информация</p>
+              <p class="lead small-text mt-3 mb-0"><i class="fa fa-user-circle fa-fw text-primary"></i> Автор петиции:&nbsp;<br>{{ pet.author }}</p>
+              <p class="lead small-text mb-0"><i class="fa fa-calendar-check-o fa-fw text-primary"></i> Дата публикации:&nbsp;<br>{{ pet.dateStart }}</p>
+              <p class="lead small-text mb-0"><i class="fa fa-calendar-times-o fa-fw text-primary"></i> Дата завершения:<br>{{ pet.dateEnd }}</p>
+              <p class="lead small-text mb-0"><i class="fa fa-barcode fa-fw text-primary"></i> Метод идентификации:<br>{{ pet.signCategory.title }}</p>
+            </div>
+          </div>
+          <div class="row my-2">
+            <div class="col-md-12">
+              <p class="text-primary border-bottom mt-3 mb-1">Последние подписи</p>
+              <p class="lead small-text mt-3 mb-0"><i class="fa fa-user-circle fa-fw text-primary"></i> Болатов Б.:&nbsp;25.12.2022 год</p>
+              <p class="lead small-text mt-0 mb-0"><i class="fa fa-user-circle fa-fw text-primary"></i> Болатов Б.:&nbsp;25.12.2022 год</p>
+              <p class="lead small-text mt-0 mb-0"><i class="fa fa-user-circle fa-fw text-primary"></i> Болатов Б.:&nbsp;25.12.2022 год</p>
+              <p class="lead small-text mt-0 mb-0"><i class="fa fa-user-circle fa-fw text-primary"></i> Болатов Б.:&nbsp;25.12.2022 год</p>
+              <p class="lead small-text mt-0 mb-0"><i class="fa fa-user-circle fa-fw text-primary"></i> Болатов Б.:&nbsp;25.12.2022 год</p>
+              <p class="small-text mt-1 mb-0"> <a href="#">Подробнее</a> </p>
+            </div>
+          </div>
+          <div class="row my-2">
+            <div class="col-md-12">
+              <p class="text-primary border-bottom mt-3 mb-1">Подписать петицию</p>
+              <form class="small-text">
+                <div class="form-group">
+                  <label>Имя*</label> <input type="text" class="form-control form-control-sm" placeholder="введите имя" required="required">
+                </div>
+                <div class="form-group">
+                  <label>Фамилия*</label> <input type="text" class="form-control form-control-sm" placeholder="введите фамилию" required="required">
+                </div>
+                <div class="form-group">
+                  <label>ИИН*</label> <input type="number" class="form-control form-control-sm" placeholder="введите свой ИИН" required="required">
+                </div>
+                <div class="form-group">
+                  <label> Мобильный номер*&nbsp;</label> <input type="text" class="form-control form-control-sm" placeholder="номер телефона" required="required"> <small class="form-text text-muted">* на данный номер будет отправлен код подтверждения</small>
+                </div>
+                <div class="form-group">
+                  <label>email</label> <input type="email" class="form-control form-control-sm" placeholder="введите свой email">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block btn-sm my-2">Подписать</button>
+                <p class="lead small-text mt-0 mb-0"><i class="fa fa-check-square-o fa-fw text-primary"></i>&nbsp; Нажимая кнопку "Подписать", Вы даете свое согласие на сбор и обработку своих персональный данных в соответствии с Законом Республики Казахстан "О персональных данных и их защите"</p>
+                <p class="lead small-text mt-0 mb-0" contenteditable="true">* поля обязательны для заполнения</p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6"><img class="img-fluid d-block" src="{% static 'assets/img/multiethnic-group-hands-raised.jpg' %}"></div>
+        <div class="col-md-6">
+          <div class="bg-white p-3 mx-auto col-md-12 col-10">
+            <h4 style="font-weight:bold;">Вы можете опубликовать свою петицию</h4>
+            <p class="mb-1 lead">создай петицию и начни&nbsp;<br>собирать подписи</p>
+            <p class="mb-1 small-text">для публикации своей петиции необходимо выбрать тариф, заполнить форму.&nbsp;<br>* заявку могут отклоняться только при нарушении Правил публикации</p>
+            <a class="btn btn-outline-primary btn-sm" href="#">Создать петицию</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

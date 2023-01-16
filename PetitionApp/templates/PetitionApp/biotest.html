@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+
+<div id="biometric-verification"></div>
+ <script type="module" src="https://test.biometric.kz/liveness-detection/LivenessPackage.js"></script>
+<script defer type="module">
+  async function init() {
+    const API_KEY = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiQVBJIEtFWSIsImV4cCI6MjI3MDc4NjM3MSwiaWF0IjoxNjY1OTg2MzcxLCJqdGkiOiIwZTI1ZjgxOTZjMGI0OTc1OGYyM2U1OTlmZGQxMTM0MyIsIm9yZ2FuaXphdGlvbl9pZCI6IjkxYjA2ZDJiLTZmOTgtNGM1Ni1iOTM3LTAxMmZlMTU4OGM3MyJ9.ufCt17fpXA0kupJA8v0jNZ62rLdnWgADWcA0vsoKdG0"
+    const LVResult = await LivenessPackage.init({
+      API_KEY: API_KEY
+    })
+    console.log(LVResult)
+  }
+
+  init()
+ </script>
+</body>
+</html>
